@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.zarzadzaniepaletami.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="660.0" style="-fx-background-color: #8d93a6;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button id="calculate_button" layoutX="276.0" layoutY="536.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #747a8c; -fx-border-radius: 10;" text="Oblicz" />
+      <Label layoutX="307.0" layoutY="71.0" text="Naczepa" />
+      <TextField id="width_input" layoutX="253.0" layoutY="112.0" style="-fx-background-color: #878da1;" />
+      <TextField id="height_input" layoutX="453.0" layoutY="112.0" style="-fx-background-color: #878da1;" />
+      <TextField id="length_input" layoutX="59.0" layoutY="112.0" style="-fx-background-color: #878da1;" />
+      <Label layoutX="227.0" layoutY="116.0" text="x" />
+      <Label layoutX="423.0" layoutY="116.0" text="x" />
+      <Label layoutX="304.0" layoutY="137.0" text="szerokość" textFill="#00000033" />
+      <Label layoutX="107.0" layoutY="137.0" text="długość" textFill="#00000033" />
+      <Label layoutX="501.0" layoutY="137.0" text="szerokość" textFill="#00000033" />
+      <Label layoutX="307.0" layoutY="182.0" text="Palety? " />
+   </children>
+</Pane>
