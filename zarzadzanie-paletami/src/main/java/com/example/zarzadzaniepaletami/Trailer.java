@@ -1,18 +1,21 @@
 package com.example.zarzadzaniepaletami;
 
-public class Pallet {
+public class Trailer {
+    private String name;
     private float length;
     private float width;
     private float height;
-    private float weight;
-    private int quantity;
-
-    public Pallet(float length, float width, float height, float weight, int quantity){
-        this.weight = weight;
+    private float maxLoad;
+    public Trailer(String name, float length, float width, float height, float maxLoad){
+        this.name = name;
         this.length = length;
         this.width = width;
         this.height = height;
-        this.quantity = quantity;
+        this.maxLoad = maxLoad;
+    }
+
+    public String getName(){
+        return this.name;
     }
 
     public float getLength(){
@@ -27,11 +30,8 @@ public class Pallet {
         return this.height;
     }
 
-    public float getWeight(){
-        return this.weight;
+    public float getMaxLoad(){
+        return this.maxLoad;
     }
 
-    public int getQuantity(){
-        return this.quantity;
-    }
 }
