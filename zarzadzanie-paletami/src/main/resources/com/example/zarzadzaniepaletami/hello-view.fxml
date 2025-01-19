@@ -10,7 +10,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="520.0" prefWidth="820.0" style="-fx-background-color: #8d93a6;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.zarzadzaniepaletami.MainController">
     <children>
-        <Button fx:id="calculate_button" layoutX="357.0" layoutY="461.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #747a8c; -fx-border-radius: 10;" text="Oblicz" onAction="#calculate"/>
+        <Button fx:id="calculate_button" layoutX="357.0" layoutY="461.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="108.0" style="-fx-background-color: #747a8c; -fx-border-radius: 10;" text="Oblicz" onAction="#calculateTrailer"/>
         <Label layoutX="393.0" layoutY="46.0" text="Palety" />
         <TextField fx:id="width_input" layoutX="179.0" layoutY="94.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #878da1;" />
         <TextField fx:id="height_input" layoutX="352.0" layoutY="94.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: #878da1;" />

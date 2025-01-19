@@ -5,7 +5,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.util.List;
 
 public class MainController {
@@ -92,29 +91,30 @@ public class MainController {
     public Button add_button;
 
     @FXML
-    private void calculate() {
-        try {
+    public void calculateTrailer(){
+        try{
             List<Trailer> trailers = trailerManager.getTrailers();
 
+            StringBuilder resultText = new StringBuilder("Wyniki:\n");
+            float totalWeight = (float) cargo.stream().mapToDouble(p -> p.getWeight() * p.getQuantity()).sum();
 
+            for (Trailer trailer: trailers) {
+                boolean result = BinPacking3D.calculate(cargo, trailer.getWidth(), trailer.getLength(), trailer.getHeight());
 
-            /*StringBuilder result = new StringBuilder("Wyniki:\n");
-            for (Trailer trailer : trailers) {
-                float trailerVolume = (trailer.getLength() * trailer.getWidth() * trailer.getHeight()) / 1000000; // m^3
-
-                if (totalVolume <= trailerVolume && totalWeight <= trailer.getMaxLoad()) {
-                    result.append("Naczepa ").append(trailer.getName()).append(" pomieści wszystkie palety.\n");
+                if (totalWeight <= trailer.getMaxLoad() && result == true) {
+                    resultText.append("Naczepa ").append(trailer.getName()).append(" pomieści wszystkie palety.\n");
                 } else {
-                    result.append("Naczepa ").append(trailer.getName()).append(" nie pomieści wszystkich palet.\n");
+                    resultText.append("Naczepa ").append(trailer.getName()).append(" nie pomieści wszystkich palet.\n");
                 }
             }
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Wyniki Kalkulacji");
             alert.setHeaderText(null);
-            alert.setContentText(result.toString());
-            alert.showAndWait();*/
-        } catch (Exception e) {
+            alert.setContentText(resultText.toString());
+            alert.showAndWait();
+
+        } catch (Exception e){
             System.out.println("Wystąpił błąd podczas obliczeń: " + e.getMessage());
         }
     }
