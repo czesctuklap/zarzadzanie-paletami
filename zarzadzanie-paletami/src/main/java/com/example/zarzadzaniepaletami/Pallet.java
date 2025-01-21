@@ -1,5 +1,8 @@
 package com.example.zarzadzaniepaletami;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pallet {
     private float length;
     private float width;
@@ -7,14 +10,19 @@ public class Pallet {
     private float weight;
     private int quantity;
 
-    public Pallet(){}
-
     public Pallet(float length, float width, float height, float weight, int quantity){
         this.weight = weight;
         this.length = length;
         this.width = width;
         this.height = height;
         this.quantity = quantity;
+    }
+
+    public List<Pallet> getRotations() {
+        List<Pallet> rotations = new ArrayList<>();
+        rotations.add(new Pallet(width, length, height, weight, quantity));
+        rotations.add(new Pallet(length, width, height, weight, quantity));
+        return rotations;
     }
 
     public float getLength(){
