@@ -1,0 +1,153 @@
+.button {
+    -fx-background-color: #172438;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-color: transparent;
+    -fx-border-radius: 20;
+}
+
+.button:hover {
+    -fx-background-color: #152134;
+}
+
+.text-field {
+    -fx-background-color: #495870;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-color: transparent;
+    -fx-border-radius: 20;
+}
+
+.spinner {
+    -fx-background-color: #495870;
+    -fx-text-fill: white;
+    -fx-background-radius: 20;
+    -fx-border-color: transparent;
+    -fx-border-radius: 20;
+}
+
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.spinner .increment-arrow {
+    -fx-background-color: white;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
+.spinner .decrement-arrow {
+    -fx-background-color: white;
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
+#calculate_button {
+    -fx-background-color: #FFC300;
+    -fx-text-fill: black;
+    -fx-background-radius: 20;
+    -fx-border-color: transparent;
+    -fx-border-radius: 20;
+}
+
+#calculate_button:hover {
+    -fx-background-color: #e6ac00;
+}
+
+.pane {
+    -fx-background-color: linear-gradient(to bottom, #202e44, #172438);
+}
+
+.table {
+    -fx-background-color: #172438;
+    -fx-text-fill: #495870;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-padding: 0;
+    -fx-border-insets: 0;
+    -fx-border-color: transparent;
+}
+
+.table .column-header {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-border-width: 0;
+}
+
+.table .column-header .label {
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.table .table-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #495870;
+    -fx-background-radius: 20;
+}
+
+.table .table-row-cell:last-of-type .table-cell {
+    -fx-background-radius: 0 0 20 20;
+}
+
+.table .table-row-cell:last-of-type {
+    -fx-background-radius: 0 0 20 20;
+}
+
+.table .table-row-cell {
+    -fx-background-color: transparent;
+    -fx-background-radius: 20;
+}
+
+.table .column-header-background {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-insets: 0;
+}
+
+.table .table-row-cell:first-of-type {
+    -fx-background-radius: 20 20 0 0;
+}
+
+.table:focused {
+    -fx-border-color: transparent;
+}
+
+.table .viewport {
+    -fx-background-color: transparent;
+}
+
+.table .scroll-bar {
+    -fx-background-color: transparent;
+    -fx-opacity: 0;
+}
+
+.table .scroll-bar .increment-button,
+.table .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-pref-width: 0;
+    -fx-pref-height: 0;
+}
+
+.table .scroll-bar .thumb {
+    -fx-background-color: #FFC300;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.table .vertical-scroll-bar .thumb {
+    -fx-background-color: #FFC300;
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+}
+
+.table .scroll-bar .increment-arrow-button,
+.table .scroll-bar .decrement-arrow-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
