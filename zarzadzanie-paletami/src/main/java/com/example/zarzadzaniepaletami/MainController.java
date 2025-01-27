@@ -47,9 +47,9 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,10,5);
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,100,1);
 
-        valueFactory.setValue(5);
+        valueFactory.setValue(1);
 
         quantity_input.setValueFactory(valueFactory);
 
@@ -58,6 +58,7 @@ public class MainController {
         column_height.setCellValueFactory(new PropertyValueFactory<>("height"));
         column_weight.setCellValueFactory(new PropertyValueFactory<>("weight"));
         column_quantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+
 
         table.setItems(cargo);
     }

@@ -10,8 +10,10 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 820, 520);
+        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("zp-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 820, 595);
+        String css = this.getClass().getResource("/style.css").toExternalForm();
+        scene.getStylesheets().add(css);
         stage.setTitle("Zarządzanie paletami");
         stage.setScene(scene);
         stage.show();
