@@ -18,7 +18,7 @@ Aplikacja:
 - Sprawdza, czy palety zmieszczą się w danej naczepie i czy nie przekroczono maksymalnej ładowności,
 - Wyświetla wynik w oknie.
 
-### 4. Algorytm pakowania 3D
+### 4. Algorytm 3D Bin Packing
 Aplikacja implementuje algorytm optymalnego rozmieszczenia palet:
 - Palety są sortowane malejąco według objętości,
 - Tworzone są warstwy (`Layer`), w których układane są palety,
@@ -27,12 +27,15 @@ Aplikacja implementuje algorytm optymalnego rozmieszczenia palet:
 
 Dzięki temu użytkownik może szybko sprawdzić, które naczepy są odpowiednie dla danego ładunku.
 
-## Wymagania oprogramowania
-- **Java Development Kit (JDK)** - wersja 8 lub nowsza (zalecana 17 lub nowsza),
-- **Git** - do pobrania kodu z repozytorium.
-
-## Instalacja i konfiguracja
--
+## Komponenty
+- `Pallet` - Zawiera implementację palet o własnościach długość, szerokość, wysokość, waga, ilość oraz funkcję odpowiadającą za poziomą rotację danej palety,
+- `Trailer` - Zawiera implementację naczep o własnościach nazwa, długość, szerokość, wysokość, maksymalna ładowność,
+- `TrailerManager` - Tworzy listę podstawowych naczep: Furgon, Standard, Mega,
+- `MainController` - Odpowiada za połączenie elementów graficznych z ich funkcjonalnościami, implementuje przyciski dodawania palet oraz kalkulacji, zawiera obsługę błędów wprowadzanych danych oraz obliczeń,
+- `BinPacking3D` - Zawiera funkcję odpowiadającą za obliczenia,
+- `Layer` - Implementuje warstwy o własnościach długość, szerokość, wysokość, zawiera funkcję odpowiadającą za umieszczanie palety w odpowiednim ustawieniu,
+- `MainApplication` - Tworzy instancje głównego okna programu,
+- `style.css` - Odpowiada za wygląd aplikacji.
 
 ## Instrukcja użytkownika
 - Po uruchomieniu aplikacji wprowadź wymiary oraz wagę palet, a następnie zatwierdź, klikając przycisk **"Dodaj"**.
