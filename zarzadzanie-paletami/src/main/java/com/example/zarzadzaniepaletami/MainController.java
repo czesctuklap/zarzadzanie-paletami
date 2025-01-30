@@ -22,7 +22,7 @@ public class MainController {
     private TextField weight_input;
 
     @FXML
-    private Spinner<Integer> quantity_input;
+    private TextField quantity_input;
 
     @FXML
     private TableView<Pallet> table;
@@ -47,11 +47,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,100,1);
 
-        valueFactory.setValue(1);
-
-        quantity_input.setValueFactory(valueFactory);
 
         column_length.setCellValueFactory(new PropertyValueFactory<>("length"));
         column_width.setCellValueFactory(new PropertyValueFactory<>("width"));
@@ -71,7 +67,7 @@ public class MainController {
             float width = Float.parseFloat(width_input.getText());
             float height = Float.parseFloat(height_input.getText());
             float weight = Float.parseFloat(weight_input.getText());
-            int quantity = (int) quantity_input.getValue();
+            int quantity = Integer.parseInt(quantity_input.getText());
 
             Pallet pallet = new Pallet(length, width, height, weight, quantity);
 
@@ -81,7 +77,7 @@ public class MainController {
             width_input.clear();
             height_input.clear();
             weight_input.clear();
-            quantity_input.getValueFactory().setValue(1);
+            quantity_input.clear();
 
         } catch (NumberFormatException e) {
             System.out.println("Wprowadź poprawne dane");
@@ -90,6 +86,8 @@ public class MainController {
 
     public Button calculate_button;
     public Button add_button;
+
+    public Button delete_button;
 
     @FXML
     public void calculateTrailer(){
@@ -119,5 +117,20 @@ public class MainController {
             System.out.println("Wystąpił błąd podczas obliczeń: " + e.getMessage());
         }
     }
+
+    @FXML
+    public void deletePallet() {
+        Pallet selectedPallet = table.getSelectionModel().getSelectedItem();
+        if (selectedPallet != null) {
+            cargo.remove(selectedPallet);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Brak wyboru");
+            alert.setHeaderText(null);
+            alert.setContentText("Proszę zaznaczyć paletę do usunięcia.");
+            alert.showAndWait();
+        }
+    }
+
 
 }
