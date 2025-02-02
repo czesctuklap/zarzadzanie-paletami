@@ -151,3 +151,28 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+
+.dialog-pane {
+    -fx-background-color: linear-gradient(to bottom, #202e44, #172438);
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: transparent;
+}
+
+.dialog-pane .content {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.dialog-pane .button-bar .button {
+    -fx-background-color: #FFC300;
+    -fx-text-fill: black;
+    -fx-background-radius: 20;
+    -fx-border-color: transparent;
+}
+
+.dialog-pane .button-bar .button:hover {
+    -fx-background-color: #e6ac00;
+}
+
