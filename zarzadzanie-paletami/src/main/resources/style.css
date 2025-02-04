@@ -26,24 +26,6 @@
     -fx-border-radius: 20;
 }
 
-.spinner .increment-arrow-button,
-.spinner .decrement-arrow-button {
-    -fx-background-color: transparent;
-    -fx-text-fill: white;
-}
-
-.spinner .increment-arrow {
-    -fx-background-color: white;
-    -fx-scale-x: 1.2;
-    -fx-scale-y: 1.2;
-}
-
-.spinner .decrement-arrow {
-    -fx-background-color: white;
-    -fx-scale-x: 1.2;
-    -fx-scale-y: 1.2;
-}
-
 #calculate_button {
     -fx-background-color: #FFC300;
     -fx-text-fill: black;
@@ -151,3 +133,34 @@
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+
+.table .table-row-cell:selected {
+    -fx-background-color: #1b283e;
+}
+
+
+
+.dialog-pane {
+    -fx-background-color: linear-gradient(to bottom, #202e44, #172438);
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: transparent;
+}
+
+.dialog-pane .content {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.dialog-pane .button-bar .button {
+    -fx-background-color: #FFC300;
+    -fx-text-fill: black;
+    -fx-background-radius: 20;
+    -fx-border-color: transparent;
+}
+
+.dialog-pane .button-bar .button:hover {
+    -fx-background-color: #e6ac00;
+}
+

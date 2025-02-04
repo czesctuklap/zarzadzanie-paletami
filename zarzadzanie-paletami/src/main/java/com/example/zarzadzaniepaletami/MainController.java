@@ -86,35 +86,61 @@ public class MainController {
 
     public Button calculate_button;
     public Button add_button;
-
     public Button delete_button;
 
     @FXML
-    public void calculateTrailer(){
-        try{
+    public void calculateTrailer() {
+        try {
             List<Trailer> trailers = trailerManager.getTrailers();
 
-            StringBuilder resultText = new StringBuilder("Wyniki:\n");
-            float totalWeight = (float) cargo.stream().mapToDouble(p -> p.getWeight() * p.getQuantity()).sum();
+            if (cargo.isEmpty()) return;
 
-            for (Trailer trailer: trailers) {
-                boolean result = BinPacking3D.calculate(cargo, trailer.getWidth(), trailer.getLength(), trailer.getHeight());
+            float totalWeight = (float) cargo.stream()
+                    .mapToDouble(p -> p.getWeight() * p.getQuantity())
+                    .sum();
 
-                if (totalWeight <= trailer.getMaxLoad() && result == true) {
-                    resultText.append("Naczepa ").append(trailer.getName()).append(" pomieści wszystkie palety.\n");
-                } else {
-                    resultText.append("Naczepa ").append(trailer.getName()).append(" nie pomieści wszystkich palet.\n");
+            for (Trailer trailer : trailers) {
+                boolean fitsInDimensions = BinPacking3D.calculate(cargo, trailer);
+                boolean fitsInWeight = (totalWeight <= trailer.getMaxLoad());
+
+                if (fitsInDimensions && fitsInWeight) {
+                    String result = String.format("Naczepa %s pomieści wszystkie palety", trailer.getName());
+
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Wynik kalkulacji");
+                    alert.setHeaderText(null);
+                    alert.setContentText(result);
+
+                    DialogPane dialogPane = alert.getDialogPane();
+                    dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+                    dialogPane.getStyleClass().add("dialog-pane");
+
+                    alert.showAndWait();
+                    return;
                 }
             }
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Wyniki Kalkulacji");
+            alert.setTitle("Wynik kalkulacji");
             alert.setHeaderText(null);
-            alert.setContentText(resultText.toString());
-            alert.showAndWait();
+            alert.setContentText("Żadna naczepa nie pomieści wszystkich palet.");
 
-        } catch (Exception e){
-            System.out.println("Wystąpił błąd podczas obliczeń: " + e.getMessage());
+            DialogPane dialogPane = alert.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+            dialogPane.getStyleClass().add("dialog-pane");
+
+            alert.showAndWait();
+        } catch (Exception e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("Błąd");
+            errorAlert.setHeaderText("Błąd podczas obliczeń");
+            errorAlert.setContentText(e.getMessage());
+
+            DialogPane dialogPane = errorAlert.getDialogPane();
+            dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+            dialogPane.getStyleClass().add("dialog-pane");
+
+            errorAlert.showAndWait();
         }
     }
 
