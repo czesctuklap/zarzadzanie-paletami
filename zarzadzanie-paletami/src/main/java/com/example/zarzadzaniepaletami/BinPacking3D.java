@@ -3,12 +3,13 @@ package com.example.zarzadzaniepaletami;
 import java.util.*;
 
 public class BinPacking3D {
+    static int toLoad = 0;
 
     public static boolean calculate(List<Pallet> cargo, Trailer trailer) {
         List<DimensionGroup> groupedPallets = groupPallets(cargo);
         //System.out.println(groupedPallets);
 
-        int toLoad = 0;
+        toLoad=0;
         for (Pallet p : cargo) {
             toLoad += p.getQuantity();
         }
