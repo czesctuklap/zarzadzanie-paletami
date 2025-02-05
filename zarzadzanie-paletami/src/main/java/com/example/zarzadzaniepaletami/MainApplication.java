@@ -16,6 +16,8 @@ public class MainApplication extends Application {
         scene.getStylesheets().add(css);
         stage.setTitle("Zarządzanie paletami");
         stage.setScene(scene);
+        stage.setMinHeight(620);
+        stage.setMinWidth(820);
         stage.show();
     }
 
