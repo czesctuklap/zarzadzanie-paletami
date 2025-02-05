@@ -80,7 +80,11 @@ public class MainController {
             quantity_input.clear();
 
         } catch (NumberFormatException e) {
-            System.out.println("Wprowadź poprawne dane");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Złe dane");
+            alert.setHeaderText(null);
+            alert.setContentText("Proszę wprowadzić poprawne dane.");
+            alert.showAndWait();
         }
     }
 
@@ -131,16 +135,11 @@ public class MainController {
 
             alert.showAndWait();
         } catch (Exception e) {
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Błąd");
-            errorAlert.setHeaderText("Błąd podczas obliczeń");
-            errorAlert.setContentText(e.getMessage());
-
-            DialogPane dialogPane = errorAlert.getDialogPane();
-            dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            dialogPane.getStyleClass().add("dialog-pane");
-
-            errorAlert.showAndWait();
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Błąd podczas obliczeń");
+            alert.setHeaderText(null);
+            alert.setContentText("Wystąpił błąd podczas obliczeń. Proszę spróbować ponownie.");
+            alert.showAndWait();
         }
     }
 

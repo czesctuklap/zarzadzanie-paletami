@@ -15,22 +15,22 @@ public class BinPacking3D {
 
         float rowHalf = trailer.getWidth() / 2;
 
-        // czy paleta jest za duża
         for (Pallet p : cargo) {
             if (p.getLength() > rowHalf && p.getWidth() > rowHalf) {
                 return false;
             }
         }
+        // czy paleta jest za duża
 
-        // sortowanie grup po głębokości malejąco
         groupedPallets.sort((g1, g2) -> {
             float dp1 = computeDepthPerPallet(g1, rowHalf);
             float dp2 = computeDepthPerPallet(g2, rowHalf);
             return Float.compare(dp2, dp1);
         });
+        // sortowanie grup po głębokości malejąco
 
-        // dwa rzędy
         for (int row = 1; row <= 2; row++) {
+            // dwa rzędy
             float currentDepth = 0;
             while (currentDepth < trailer.getLength() && toLoad > 0) {
                 boolean placed = false;
@@ -39,17 +39,16 @@ public class BinPacking3D {
                         continue;
                     }
 
-                    // głębokość dla grupy
                     String[] dims = group.getDimension().split("x");
                     float longer = Float.parseFloat(dims[0]);
                     float shorter = Float.parseFloat(dims[1]);
                     float depthPerPallet = (longer <= rowHalf) ? shorter : longer;
+                    // głębokość dla grupy
 
                     if (currentDepth + depthPerPallet > trailer.getLength()) {
                         continue;
                     }
 
-                    // układanie w wysokość
                     float currentHeight = 0;
                     int palletsPlaced = 0;
                     Iterator<Pallet> iterator = group.getPallets().iterator();
@@ -67,6 +66,7 @@ public class BinPacking3D {
                             break;
                         }
                     }
+                    // układanie w wysokość
 
                     if (palletsPlaced > 0) {
                         currentDepth += depthPerPallet;
