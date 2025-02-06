@@ -7,6 +7,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.List;
 
+import static com.example.zarzadzaniepaletami.BinPacking3D.toLoad;
+
 public class MainController {
     private TrailerManager trailerManager = new TrailerManager();
     @FXML
@@ -80,7 +82,11 @@ public class MainController {
             quantity_input.clear();
 
         } catch (NumberFormatException e) {
-            System.out.println("Wprowadź poprawne dane");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Złe dane");
+            alert.setHeaderText(null);
+            alert.setContentText("Proszę wprowadzić poprawne dane.");
+            alert.showAndWait();
         }
     }
 
@@ -92,7 +98,6 @@ public class MainController {
     public void calculateTrailer() {
         try {
             List<Trailer> trailers = trailerManager.getTrailers();
-
             if (cargo.isEmpty()) return;
 
             float totalWeight = (float) cargo.stream()
@@ -100,48 +105,55 @@ public class MainController {
                     .sum();
 
             for (Trailer trailer : trailers) {
-                boolean fitsInDimensions = BinPacking3D.calculate(cargo, trailer);
                 boolean fitsInWeight = (totalWeight <= trailer.getMaxLoad());
+                boolean fitsInDimensions = BinPacking3D.calculate(cargo, trailer);
 
-                if (fitsInDimensions && fitsInWeight) {
-                    String result = String.format("Naczepa %s pomieści wszystkie palety", trailer.getName());
-
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Wynik kalkulacji");
-                    alert.setHeaderText(null);
-                    alert.setContentText(result);
-
-                    DialogPane dialogPane = alert.getDialogPane();
-                    dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-                    dialogPane.getStyleClass().add("dialog-pane");
-
-                    alert.showAndWait();
+                if (fitsInWeight && fitsInDimensions) {
+                    showAlert("Naczepa " + trailer.getName() + " pomieści wszystkie palety");
                     return;
                 }
             }
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Wynik kalkulacji");
-            alert.setHeaderText(null);
-            alert.setContentText("Żadna naczepa nie pomieści wszystkich palet.");
+            float maxTrailerLoad = trailers.stream()
+                    .map(Trailer::getMaxLoad)
+                    .max(Float::compare)
+                    .orElse(0f);
 
-            DialogPane dialogPane = alert.getDialogPane();
-            dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            dialogPane.getStyleClass().add("dialog-pane");
+            String message;
+            if (totalWeight > maxTrailerLoad) {
+                float excess = totalWeight - maxTrailerLoad;
+                message = String.format("Przekroczono maksymalną ładowność o %.2f kg", excess);
+            } else {
+                message = String.format("Brak miejsca - pozostało do załadowania: %d palet", toLoad);
+            }
 
-            alert.showAndWait();
+
+            showAlert("Żadna naczepa nie pomieści ładunku.\n" + message);
+
         } catch (Exception e) {
-            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Błąd");
-            errorAlert.setHeaderText("Błąd podczas obliczeń");
-            errorAlert.setContentText(e.getMessage());
-
-            DialogPane dialogPane = errorAlert.getDialogPane();
-            dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
-            dialogPane.getStyleClass().add("dialog-pane");
-
-            errorAlert.showAndWait();
+            showErrorAlert("Błąd podczas obliczeń: " + e.getMessage());
         }
+    }
+
+    private void showAlert(String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Wynik kalkulacji");
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+
+        DialogPane dialogPane = alert.getDialogPane();
+        dialogPane.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        dialogPane.getStyleClass().add("dialog-pane");
+
+        alert.showAndWait();
+    }
+
+    private void showErrorAlert(String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Błąd");
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     @FXML
