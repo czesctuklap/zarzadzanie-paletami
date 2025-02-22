@@ -7,12 +7,13 @@ public class BinPacking3D {
 
     public static boolean calculate(List<Pallet> cargo, Trailer trailer) {
         List<DimensionGroup> groupedPallets = groupPallets(cargo);
-        //System.out.println(groupedPallets);
+        //System.out.println("Pogrupowane palety"+groupedPallets);
 
         toLoad=0;
         for (Pallet p : cargo) {
             toLoad += p.getQuantity();
         }
+        //System.out.println("Ilość palet do załadowania: "+toLoad);
 
         float rowHalf = trailer.getWidth() / 2;
 
@@ -21,6 +22,7 @@ public class BinPacking3D {
                 return false;
             }
         }
+        //System.out.println("Paleta nie jest za duża");
         // czy paleta jest za duża
 
         groupedPallets.sort((g1, g2) -> {

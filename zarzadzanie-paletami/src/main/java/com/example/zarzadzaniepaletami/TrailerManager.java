@@ -22,4 +22,6 @@ public class TrailerManager {
     public List<Trailer> getTrailers() {
         return trailers;
     }
+
+
 }

@@ -81,6 +81,8 @@ public class MainController {
             weight_input.clear();
             quantity_input.clear();
 
+            //System.out.println("Dodano paletę z wartościami "+length+", "+width+", "+height+", "+weight+", "+quantity);
+
         } catch (NumberFormatException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Złe dane");
@@ -99,14 +101,19 @@ public class MainController {
         try {
             List<Trailer> trailers = trailerManager.getTrailers();
             if (cargo.isEmpty()) return;
+            //System.out.println("Naczepy: "+trailers);
 
             float totalWeight = (float) cargo.stream()
                     .mapToDouble(p -> p.getWeight() * p.getQuantity())
                     .sum();
+            //System.out.println("Waga palet: "+totalWeight);
 
             for (Trailer trailer : trailers) {
                 boolean fitsInWeight = (totalWeight <= trailer.getMaxLoad());
                 boolean fitsInDimensions = BinPacking3D.calculate(cargo, trailer);
+
+                //System.out.println("Czy mieści się wagowo? "+fitsInWeight);
+                //System.out.println("Czy mieści się powierzchniowo? "+fitsInDimensions);
 
                 if (fitsInWeight && fitsInDimensions) {
                     showAlert("Naczepa " + trailer.getName() + " pomieści wszystkie palety");

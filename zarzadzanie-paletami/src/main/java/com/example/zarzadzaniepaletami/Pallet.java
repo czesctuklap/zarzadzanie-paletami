@@ -44,4 +44,9 @@ public class Pallet {
     public int getQuantity(){
         return this.quantity;
     }
+
+    //@Override
+    //public String toString() {
+    //    return this.length+"x"+this.height+", "+this.quantity;
+    //}
 }

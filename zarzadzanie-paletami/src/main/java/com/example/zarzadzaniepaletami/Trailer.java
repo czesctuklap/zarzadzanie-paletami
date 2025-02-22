@@ -34,4 +34,9 @@ public class Trailer {
         return this.maxLoad;
     }
 
+    //@Override
+    //public String toString() {
+    //    return this.name;
+    //}
+
 }
