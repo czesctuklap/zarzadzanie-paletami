@@ -61,7 +61,6 @@ public class MainController {
         table.setItems(cargo);
     }
 
-
     @FXML
     private void addPallet() {
         try {
@@ -169,6 +168,5 @@ public class MainController {
             alert.showAndWait();
         }
     }
-
 
 }
